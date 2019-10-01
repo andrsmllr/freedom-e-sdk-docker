@@ -8,7 +8,7 @@ SHELL ["/bin/bash", "-c"]
 USER root:root
 
 ENV FREEDOM_E_SDK_VERSION=${FREEDOM_E_SDK_VERSION}
-ENV FREEDOM_E_SDK_SRC=/usr/src/freedom-e-sdk
+ENV FREEDOM_E_SDK_SRC=/opt/freedom-e-sdk
 ENV FREEDOM_E_SDK_PATH=/opt/freedom-e-sdk
 
 # Install dependencies.
@@ -38,7 +38,7 @@ RUN apt update -qq \
 RUN git clone https://github.com/sifive/freedom-e-sdk . \
     && git checkout ${FREEDOM_E_SDK_VERSION} \
     && git submodule init \
-    && git submodule update
+    && git submodule update --recursive
 # Get recommended compiler binaries from SiFive homepage.
 ENV RISCV_PATH=/opt/riscv64-unkown-elf-gcc-8.2.0/
 RUN wget -nv \
