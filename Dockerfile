@@ -60,6 +60,8 @@ RUN wget -nv \
     && rm -rf $(find . -maxdepth 1 -name "riscv-openocd*" -type d) \
     && export PATH=$PATH:${RISCV_OPENOCD_PATH}bin
 RUN make
+RUN apt update -y -qq \
+    && apt install -y libftdi1 libftdi1-2
 
-WORKDIR /work
+WORKDIR ${FREEDOM_E_SDK_PATH}
 ENTRYPOINT ["/bin/bash"]
